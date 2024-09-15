@@ -1,31 +1,22 @@
-//trial
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:samvidhan_arcade/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('App starts with splash screen', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(SamvidhanArcadeApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the splash screen is displayed.
+    // Assuming the splash screen contains a quote or logo, test for that text or widget.
+    expect(find.text('Your Splash Screen Quote Here'), findsOneWidget);
+    // You can also test for a specific widget like Image or CircularProgressIndicator
+    // expect(find.byType(Image), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Optionally, wait for the splash screen to disappear if it transitions to another page.
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the login screen is displayed after the splash screen.
+    expect(find.text('Login'), findsOneWidget); // Assuming the login screen has 'Login' text.
   });
 }
